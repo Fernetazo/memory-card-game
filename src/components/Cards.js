@@ -1,12 +1,12 @@
 import React from "react";
 
 const Cards = (props) => {
-  const { cards, shuffleCards } = props;
+  const { cards, checkSelection } = props;
   return (
     <div>
       {cards.map((e, index) => {
         return (
-          <button onClick={shuffleCards} key={e.id}>
+          <button onClick={checkSelection} id={e.id} key={e.id} name={e.name}>
             {e.name}
           </button>
         );

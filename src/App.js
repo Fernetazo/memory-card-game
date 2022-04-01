@@ -5,7 +5,7 @@ import Cards from "./components/Cards";
 const App = () => {
   const [score, setScore] = useState(0);
 
-  const [hiScore, setHiScore] = useState(null);
+  const [hiScore, setHiScore] = useState(0);
 
   const [cards, setCards] = useState([
     { id: uniqid(), name: "a" },
@@ -17,7 +17,10 @@ const App = () => {
 
   const [selectedCards, setSelectedCards] = useState([]);
 
-  const addScore = () => {};
+  const addScore = () => {
+    setScore(score + 1);
+    checkForHiScore();
+  };
 
   const checkForHiScore = () => {
     if (score > hiScore) {
@@ -25,8 +28,34 @@ const App = () => {
     }
   };
 
+  useEffect(() => {
+    checkForHiScore();
+  }, [score]);
+
+  const checkSelection = (e) => {
+    let id = e.target.id;
+    let name = e.target.name;
+    let newObj = { id: id, name: name };
+    let hasIt = selectedCards.some((element) => element.id === id);
+
+    if (hasIt) {
+      console.log("GAME OVER");
+    } else {
+      setSelectedCards(selectedCards.concat(newObj));
+      addScore();
+      shuffleCards();
+    }
+  };
+
   const shuffleCards = () => {
-    console.log("lol");
+    let copyCards = cards;
+
+    for (let i = copyCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copyCards[i], copyCards[j]] = [copyCards[j], copyCards[i]];
+    }
+
+    setCards(copyCards);
   };
 
   const resetScore = () => {};
@@ -38,7 +67,7 @@ const App = () => {
         <div>HI-SCORE: {hiScore}</div>
       </div>
       <div className="cards">
-        <Cards cards={cards} shuffleCards={shuffleCards}></Cards>
+        <Cards cards={cards} checkSelection={checkSelection}></Cards>
       </div>
     </div>
   );
