@@ -40,6 +40,9 @@ const App = () => {
 
     if (hasIt) {
       console.log("GAME OVER");
+      resetScore();
+      shuffleCards();
+      resetSelectedCards();
     } else {
       setSelectedCards(selectedCards.concat(newObj));
       addScore();
@@ -58,7 +61,13 @@ const App = () => {
     setCards(copyCards);
   };
 
-  const resetScore = () => {};
+  const resetScore = () => {
+    setScore(0);
+  };
+
+  const resetSelectedCards = () => {
+    setSelectedCards([]);
+  };
 
   return (
     <div>
