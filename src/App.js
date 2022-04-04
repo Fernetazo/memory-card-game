@@ -8,11 +8,16 @@ const App = () => {
   const [hiScore, setHiScore] = useState(0);
 
   const [cards, setCards] = useState([
-    { id: uniqid(), name: "a" },
-    { id: uniqid(), name: "b" },
-    { id: uniqid(), name: "c" },
-    { id: uniqid(), name: "d" },
-    { id: uniqid(), name: "e" },
+    { id: uniqid(), name: "club_2" },
+    { id: uniqid(), name: "club_3" },
+    { id: uniqid(), name: "club_4" },
+    { id: uniqid(), name: "club_5" },
+    { id: uniqid(), name: "club_6" },
+    { id: uniqid(), name: "diamond_2" },
+    { id: uniqid(), name: "diamond_3" },
+    { id: uniqid(), name: "diamond_4" },
+    { id: uniqid(), name: "diamond_5" },
+    { id: uniqid(), name: "diamond_6" },
   ]);
 
   const [selectedCards, setSelectedCards] = useState([]);
@@ -39,7 +44,7 @@ const App = () => {
     let hasIt = selectedCards.some((element) => element.id === id);
 
     if (hasIt) {
-      console.log("GAME OVER");
+      alert("GAME OVER :(");
       resetScore();
       shuffleCards();
       resetSelectedCards();
@@ -47,6 +52,7 @@ const App = () => {
       setSelectedCards(selectedCards.concat(newObj));
       addScore();
       shuffleCards();
+      checkWin();
     }
   };
 
@@ -67,6 +73,12 @@ const App = () => {
 
   const resetSelectedCards = () => {
     setSelectedCards([]);
+  };
+
+  const checkWin = () => {
+    if (score === cards.length - 1) {
+      alert("YOU WIN! :D");
+    }
   };
 
   return (
