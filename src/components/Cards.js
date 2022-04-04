@@ -2,6 +2,7 @@ import React from "react";
 
 const Cards = (props) => {
   const { cards, checkSelection } = props;
+
   return (
     <div>
       {cards.map((e, index) => {

@@ -22,6 +22,8 @@ const App = () => {
 
   const [selectedCards, setSelectedCards] = useState([]);
 
+  const [isShuffled, setIsShuffled] = useState(false);
+
   const addScore = () => {
     setScore(score + 1);
     checkForHiScore();
@@ -32,10 +34,6 @@ const App = () => {
       setHiScore(score);
     }
   };
-
-  useEffect(() => {
-    checkForHiScore();
-  }, [score]);
 
   const checkSelection = (e) => {
     let id = e.target.id;
@@ -80,6 +78,18 @@ const App = () => {
       alert("YOU WIN! :D");
     }
   };
+
+  useEffect(() => {
+    console.log("Once");
+    if (!isShuffled) {
+      setIsShuffled(true);
+      shuffleCards();
+    }
+  }, []); //Watchout! In strict mode, it will render twice
+
+  useEffect(() => {
+    checkForHiScore();
+  }, [score]);
 
   return (
     <div>
