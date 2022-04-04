@@ -9,8 +9,8 @@ const Cards = (props) => {
         return (
           <button onClick={checkSelection} id={e.id} key={e.id} name={e.name}>
             <img
-              style={{ pointerEvents: "none" }} //Prevents img events thus, not firing checkSelection
-              src={"/cardsImages/" + e.name + ".png"}
+              style={{ pointerEvents: "none" }} //Prevents img events to fire, thus not firing checkSelection
+              src={"%PUBLIC_URL%/cardsImages/" + e.name + ".png"}
               alt={e.name}
             ></img>
           </button>
