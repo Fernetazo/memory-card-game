@@ -10,7 +10,7 @@ const Cards = (props) => {
           <button onClick={checkSelection} id={e.id} key={e.id} name={e.name}>
             <img
               style={{ pointerEvents: "none" }} //Prevents img events to fire, thus not firing checkSelection
-              src={require("../cardsImages/" + e.name + ".png")}
+              src={e.name}
               alt={e.name}
             ></img>
           </button>
